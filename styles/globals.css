@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;1,800&family=Permanent+Marker&display=swap');
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  
 }
 
 a {
@@ -14,6 +16,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 @media (prefers-color-scheme: dark) {
   html {
