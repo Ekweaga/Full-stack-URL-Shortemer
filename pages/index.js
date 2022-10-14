@@ -39,7 +39,7 @@ export default function Home() {
 
   <div className='mt-[50px] flex flex-col items-center justify-center'>
     <div><h1 className='text-center font-bold text-4xl'>ADVANCED STATISTICS</h1>
-    <p className='text-center'>Track how your links are performing</p></div>
+    <p className='text-center'>Track how your links are performings</p></div>
   </div>
 
 </div>
