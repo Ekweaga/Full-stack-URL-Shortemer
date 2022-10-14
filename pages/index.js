@@ -12,36 +12,75 @@ export default function Home() {
       </Head>
 
 
-<header className="mt-[60px]">
-  <div className='flex  justify-center'>
-    <div className='w-[500px] ml-[150px] mt-[80px]'>
-      <h1 className='font-bold text-6xl mb-[20px]'>More than just shorter links</h1>
+<header className="md:mt-[60px]">
+  <div className='flex  justify-center flex-col md:flex-row p-3'>
+    <div className='md:w-[500px] md:ml-[150px] md:mt-[80px] mt-[40px]'>
+      <h1 className='font-bold text-6xl mb-[20px] md-leading-50 leading-[80px]'>More than just shorter links</h1>
       <p>Build your brand recognition and get detailed insights,total clicks of your clicks performance</p>
 
-      <div>
-        <button className='text-white bg-[#2BD0D0] w-[200px] p-2'>Get Started</button>
+      <div className="mt-[25px]">
+        <button className='text-white bg-[#2BD0D0] w-[200px] p-2' style={{borderRadius:'20px'}}>Get Started</button>
       </div>
       </div>
-    <div>
+    <div className='mt-[30px] md:mt-0'>
       <Image src="/illustration-working.svg" width="500px" height="400px" alt="illustration"></Image>
     </div>
   </div>
 </header>
 
 
-<div className='h-[600px] bg-[#EFF1F7] bigContainer mt-[60px] relative'>
-  <div className='inputContainer bg-[#3A3054] w-[70%] mx-auto flex items-center justify-around h-[80px] p-4 shadow absolute -top-[50px] left-[200px] mb-[350px]'  style={{borderRadius:'10px'}}>
-    <input type="text" placeholder='Enter Links' className='w-[700px] p-2'/>
-    <button className='text-white bg-[#2BD0D0] w-[200px] p-2'>Shorten</button>
+<div className='md:h-[800px] bg-[#EFF1F7] bigContainer mt-[60px] relative py-4'>
+  <div className='inputContainer bg-[#3A3054] md:w-[70%] mx-auto flex items-center justify-around h-[80px] p-4 shadow absolute md:-top-[30px] -top-[30px] md:left-[200px] mb-[350px] '  style={{borderRadius:'10px'}}>
+    <input type="text" placeholder={false? "Enter Links":"Login to continue"} className='md:w-[700px] p-2 w-[300px] focus:outline-[#2BD0D0]' disabled={true}/>
+    <button className='text-white bg-[#2BD0D0] md:w-[200px] p-2 cursor-pointer' disabled={true}>{false? "KUTI!!":"Login to continue"}</button>
+    
 
   </div>
 <br/><br/><br/><br/><br/><br/><br/><br/>
 
   <div className='mt-[50px] flex flex-col items-center justify-center'>
-    <div><h1 className='text-center font-bold text-4xl'>ADVANCED STATISTICS</h1>
-    <p className='text-center'>Track how your links are performings</p></div>
+    <div><h1 className='text-center font-bold text-4xl m-[15px]'>ADVANCED STATISTICS</h1>
+    <p className='text-center w-[400px]'>Track how your links are performing with our advanced statistics dashboard</p></div>
   </div>
+<div className="stats flex md:w-[70%] mx-auto justify-between mt-[35px] flex-col md:flex-row gap-[40px] md:gap-0 items-center">
 
+      <div className='h-[250px] bg-white w-[300px] p-3 relative'>
+      <div className="bg-[#3A3054] rounded-full w-[50px] h-[50px] flex items-center justify-center p-3 mb-[40px] absolute -top-[20px] left-[40px]"><Image src="/icon-brand-recognition.svg" width="30px" height="30px" alt="brand"></Image></div>
+      <div className='mt-[50px]'>
+        <h1 className='font-bold text-2xl text-center'>Brand Recognition</h1>
+        <p className='text-sm mt-[25px]'>Boost your brand recognition with sharable links. Generic links dont mean a thing. With kuti, help make links easily sharable</p>
+      </div>
+      </div>
+
+
+      <div className='h-[250px] bg-white w-[300px] relative p-3'>
+      <div  className="bg-[#3A3054] rounded-full w-[50px] h-[50px] flex items-center justify-center p-3 absolute -top-[20px] left-[40px]"><Image src="/icon-detailed-records.svg" width="30px" height="30px" alt="records"></Image></div>
+      <div className='mt-[50px]'>
+        <h1 className='font-bold text-2xl text-center'>Detailed Records</h1>
+        <p className='text-sm mt-[25px]'>With Kuti, getting insights on the total number of clicks,knowing when and where people engage ur content.Links are saved on our database</p>
+      </div>
+      </div>
+      <div className='h-[250px] bg-white w-[300px] relative p-3'>
+      <div  className="bg-[#3A3054] rounded-full w-[50px] h-[50px] flex items-center justify-center p-3 absolute -top-[20px] left-[40px]"><Image src="/icon-fully-customizable.svg" width="30px" height="30px" alt="fully"></Image></div>
+      <div className='mt-[50px]'>
+        <h1 className='font-bold text-2xl text-center'>Shorter Links</h1>
+        <p className='text-sm mt-[25px]'>With Kuti, getting insights on the total number of clicks,knowing when and where people engage ur content</p>
+      </div>
+      </div>
+</div>
+
+
+</div>
+
+
+<div className='h-[150px] ' style={{background:'url(bg-boost-desktop.svg)',backgroundSize:'cover',backgroundRepeat:'no-repeat'}}>
+<div className='h-full bg-[#3A3054]/90 text-white flex flex-col items-center justify-center p-3'>
+  <h1 className="text-2xl m-[20px]">Boost your links today</h1>
+  <div>
+        <button className='text-white bg-[#2BD0D0] w-[200px] p-2' style={{borderRadius:'20px'}}>Get Started</button>
+      </div>
+
+</div>
 </div>
 
      
