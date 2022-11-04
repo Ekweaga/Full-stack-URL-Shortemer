@@ -4,7 +4,7 @@ import React from 'react'
 function Footer() {
   return (
     <>
-    <footer className='bg-black  text-white flex justify-between p-3 text-sm'>
+    <footer className='bg-black  text-white flex justify-between p-3 text-sm '>
  <div>
             <h1 className='font-bold text-1xl'>KUTI</h1>
         </div>

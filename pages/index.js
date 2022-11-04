@@ -1,8 +1,32 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import {useContext} from "react"
+import { Auth } from './Context'
+import Link from "next/link"
+import axios from "axios"
+import { useState } from 'react'
+import { doc,updateDoc,arrayUnion } from "firebase/firestore"; 
+import {getFirestore} from 'firebase/firestore'
+
+import {firebaseapp} from "../styles/Firebase/firebase"
 
 export default function Home() {
+  const {user} = useContext(Auth)
+  const [link,setLink] = useState('')
+  const projectfirestore = getFirestore(firebaseapp)
+
+  const cutUrl = async ()=>{
+    axios.get(`https://api.shrtco.de/v2/shorten?url=${link}`).then((response)=>{
+      console.log(response.data.result)
+     updateDoc(doc(projectfirestore,"Links",`${user?.email}`),{
+        saveShows:arrayUnion({
+            link:response.data.result.short_link
+        })
+      })
+    })
+    setLink('')
+  }
   return (
     <>
       <Head>
@@ -19,7 +43,7 @@ export default function Home() {
       <p>Build your brand recognition and get detailed insights,total clicks of your clicks performance</p>
 
       <div className="mt-[25px]">
-        <button className='text-white bg-[#2BD0D0] w-[200px] p-2' style={{borderRadius:'20px'}}>Get Started</button>
+        <button className='text-white bg-[#2BD0D0] w-[200px] p-2' style={{borderRadius:'20px'}}><Link href="signup">Get Started</Link></button>
       </div>
       </div>
     <div className='mt-[30px] md:mt-0'>
@@ -31,8 +55,8 @@ export default function Home() {
 
 <div className='md:h-[800px] bg-[#EFF1F7] bigContainer mt-[60px] relative py-4'>
   <div className='inputContainer bg-[#3A3054] md:w-[70%] mx-auto flex items-center justify-around h-[80px] p-4 shadow absolute md:-top-[30px] -top-[30px] md:left-[200px] mb-[350px] '  style={{borderRadius:'10px'}}>
-    <input type="text" placeholder={false? "Enter Links":"Login to continue"} className='md:w-[700px] p-2 w-[300px] focus:outline-[#2BD0D0]' disabled={true}/>
-    <button className='text-white bg-[#2BD0D0] md:w-[200px] p-2 cursor-pointer' disabled={true}>{false? "KUTI!!":"Login to continue"}</button>
+    <input type="text" placeholder={user? "Enter Links":"Login to continue"} className='md:w-[700px] p-2 w-[300px] focus:outline-[#2BD0D0]' disabled={user ? false :true} value={link} onChange={(e)=>setLink(e.target.value)}/>
+    <button className='text-white bg-[#2BD0D0] md:w-[200px] p-2 cursor-pointer' disabled={user ? false :true} onClick={cutUrl}>{user ? "CUT!!":"Login to continue"}</button>
     
 
   </div>
@@ -77,7 +101,7 @@ export default function Home() {
 <div className='h-full bg-[#3A3054]/90 text-white flex flex-col items-center justify-center p-3'>
   <h1 className="text-2xl m-[20px]">Boost your links today</h1>
   <div>
-        <button className='text-white bg-[#2BD0D0] w-[200px] p-2' style={{borderRadius:'20px'}}>Get Started</button>
+        <button className='text-white bg-[#2BD0D0] w-[200px] p-2' style={{borderRadius:'20px'}}><Link href="signup">Get Started</Link></button>
       </div>
 
 </div>
