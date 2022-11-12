@@ -5,7 +5,7 @@ import { Auth } from './Context'
 import {  signOut } from "firebase/auth";
 import { doc,updateDoc,arrayUnion, onSnapshot } from "firebase/firestore"; 
 import {getFirestore} from 'firebase/firestore'
-
+import copy from 'copy-to-clipboard';
 import {firebaseapp} from "../styles/Firebase/firebase"
 import {auth} from "../styles/Firebase/firebase"
 import {useRouter} from "next/router"
@@ -46,6 +46,11 @@ const cuturl = async ()=>{
   setModal(!modal)
 }
 
+const copyText = (text)=>{
+  copy(text)
+  alert("Link copied!!")
+}
+
     const {user} = useContext(Auth)
     useEffect(()=>{
    
@@ -57,6 +62,8 @@ const cuturl = async ()=>{
        
       
     });
+
+   
     
     
     },[projectfirestore,user?.email])
@@ -64,9 +71,9 @@ const cuturl = async ()=>{
     if(loading) <Spinner/>
   return (
     <>
-    <div className="h-[100vh]">
+    <div className="h-[100vh] py-4">
         <div className="flex justify-around items-center mt-[60px]">
-            <div className="flex justify-around items-center gap-[30px]"> <h2 className="font-bold text-2xl">Links</h2>  <button className='text-white bg-[#2BD0D0] w-[150px] p-2 shadow' onClick={()=>setModal(!modal)} >Create Link</button></div>
+            <div className="flex justify-around md:items-center gap-[30px] flex-col md:flex-row"> <h2 className="font-bold text-2xl">Links</h2>  <button className='text-white bg-[#2BD0D0] w-[150px] p-2 shadow' onClick={()=>setModal(!modal)} >Create Link</button></div>
            
             <div className="flex items-center justify-center">
             <span className="cursor-pointer" onClick={logout}>Logout </span>
@@ -77,13 +84,15 @@ const cuturl = async ()=>{
 
       {links?.length === 0 ?<div className="flex flex-col items-center justify-center mt-[50px]"><Image src="/undraw_No_data_re_kwbl.png" width={400} height={300} alt="icon"/><span>No links created</span></div>: 
       (
-        <div className="flex flex-col  justify-center gap-[10px] md:ml-[250px] mt-[30px] ml-[30px]">
+        <div className="grid grid-cols-2 md:grid-cols-4  gap-[30px] md:ml-[100px] mt-[30px] ml-[20px]">
         {links?.map((link)=>{
           return (
-           <> <h2 className="font-bold text-2xl">{link?.name ? link?.name : (<span>My website</span>)}</h2>
-            <div className="flex gap-[30px]">
+           <> 
+           <div className="flex-col flex w-[200px]"><h2 className="font-bold text-2xl">{link?.name ? link?.name : (<span>My website</span>)}</h2>
+            <div className="flex  flex-col">
              <a href={`https://www.${link?.link}`} className="text-[#2BD0D0]">{link?.link}</a>
-             <button className="border-2 border-[#2BD0D0] w-[100px]">Copy</button>
+             <button className="border-2 border-[#2BD0D0] w-[100px]" onClick={()=>copyText(link?.link)}>Copy</button>
+            </div>
             </div>
             </>
           )
