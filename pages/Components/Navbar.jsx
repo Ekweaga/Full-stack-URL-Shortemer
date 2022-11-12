@@ -34,7 +34,7 @@ function Navbar() {
         </div>
 
         <ul className='md:flex items-center justify-between gap-[30px] hidden'>
-            <li>Home</li>
+            <li><Link href="/">Home</Link></li>
             <li>Get started</li>
             <li>Our Solutions</li>
             <li>{user? <span onClick={()=>router.push('dasboard')} className="cursor-pointer">dashboard</span> :null}</li>
